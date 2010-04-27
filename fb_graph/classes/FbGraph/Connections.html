@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: FbGraph::Connections</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">FbGraph::Connections</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/fb_graph/connections/activities_rb.html">
+                lib/fb_graph/connections/activities.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/albums_rb.html">
+                lib/fb_graph/connections/albums.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/attending_rb.html">
+                lib/fb_graph/connections/attending.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/books_rb.html">
+                lib/fb_graph/connections/books.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/comments_rb.html">
+                lib/fb_graph/connections/comments.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/declined_rb.html">
+                lib/fb_graph/connections/declined.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/events_rb.html">
+                lib/fb_graph/connections/events.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/feed_rb.html">
+                lib/fb_graph/connections/feed.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/friends_rb.html">
+                lib/fb_graph/connections/friends.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/groups_rb.html">
+                lib/fb_graph/connections/groups.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/home_rb.html">
+                lib/fb_graph/connections/home.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/interests_rb.html">
+                lib/fb_graph/connections/interests.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/invited_rb.html">
+                lib/fb_graph/connections/invited.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/likes_rb.html">
+                lib/fb_graph/connections/likes.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/links_rb.html">
+                lib/fb_graph/connections/links.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/maybe_rb.html">
+                lib/fb_graph/connections/maybe.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/members_rb.html">
+                lib/fb_graph/connections/members.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/movies_rb.html">
+                lib/fb_graph/connections/movies.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/music_rb.html">
+                lib/fb_graph/connections/music.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/noreply_rb.html">
+                lib/fb_graph/connections/noreply.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/notes_rb.html">
+                lib/fb_graph/connections/notes.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/photos_rb.html">
+                lib/fb_graph/connections/photos.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/picture_rb.html">
+                lib/fb_graph/connections/picture.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/posts_rb.html">
+                lib/fb_graph/connections/posts.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/statuses_rb.html">
+                lib/fb_graph/connections/statuses.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/tagged_rb.html">
+                lib/fb_graph/connections/tagged.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/television_rb.html">
+                lib/fb_graph/connections/television.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fb_graph/connections/videos_rb.html">
+                lib/fb_graph/connections/videos.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Connections/Activities.html" class="link">FbGraph::Connections::Activities</a><br />
+Module <a href="Connections/Albums.html" class="link">FbGraph::Connections::Albums</a><br />
+Module <a href="Connections/Attending.html" class="link">FbGraph::Connections::Attending</a><br />
+Module <a href="Connections/Books.html" class="link">FbGraph::Connections::Books</a><br />
+Module <a href="Connections/Comments.html" class="link">FbGraph::Connections::Comments</a><br />
+Module <a href="Connections/Declined.html" class="link">FbGraph::Connections::Declined</a><br />
+Module <a href="Connections/Events.html" class="link">FbGraph::Connections::Events</a><br />
+Module <a href="Connections/Feed.html" class="link">FbGraph::Connections::Feed</a><br />
+Module <a href="Connections/Friends.html" class="link">FbGraph::Connections::Friends</a><br />
+Module <a href="Connections/Groups.html" class="link">FbGraph::Connections::Groups</a><br />
+Module <a href="Connections/Home.html" class="link">FbGraph::Connections::Home</a><br />
+Module <a href="Connections/Interests.html" class="link">FbGraph::Connections::Interests</a><br />
+Module <a href="Connections/Invited.html" class="link">FbGraph::Connections::Invited</a><br />
+Module <a href="Connections/Likes.html" class="link">FbGraph::Connections::Likes</a><br />
+Module <a href="Connections/Links.html" class="link">FbGraph::Connections::Links</a><br />
+Module <a href="Connections/Maybe.html" class="link">FbGraph::Connections::Maybe</a><br />
+Module <a href="Connections/Members.html" class="link">FbGraph::Connections::Members</a><br />
+Module <a href="Connections/Movies.html" class="link">FbGraph::Connections::Movies</a><br />
+Module <a href="Connections/Music.html" class="link">FbGraph::Connections::Music</a><br />
+Module <a href="Connections/Noreply.html" class="link">FbGraph::Connections::Noreply</a><br />
+Module <a href="Connections/Notes.html" class="link">FbGraph::Connections::Notes</a><br />
+Module <a href="Connections/Photos.html" class="link">FbGraph::Connections::Photos</a><br />
+Module <a href="Connections/Picture.html" class="link">FbGraph::Connections::Picture</a><br />
+Module <a href="Connections/Posts.html" class="link">FbGraph::Connections::Posts</a><br />
+Module <a href="Connections/Statuses.html" class="link">FbGraph::Connections::Statuses</a><br />
+Module <a href="Connections/Tagged.html" class="link">FbGraph::Connections::Tagged</a><br />
+Module <a href="Connections/Television.html" class="link">FbGraph::Connections::Television</a><br />
+Module <a href="Connections/Videos.html" class="link">FbGraph::Connections::Videos</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
