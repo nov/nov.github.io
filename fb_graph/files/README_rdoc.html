@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Tue Apr 27 23:09:49 +0900 2010</td>
+      <td>Tue Apr 27 23:36:50 +0900 2010</td>
     </tr>
     </table>
   </div>
@@ -83,6 +83,10 @@ A Ruby wrapper for Facebook Graph API. This is a work in progress.
 href="http://github.com/nov/fb_graph">github.com/nov/fb_graph</a>)
 
 </li>
+<li>View RDoc on GitHub (<a
+href="http://nov.github.com/fb_graph">nov.github.com/fb_graph</a>)
+
+</li>
 <li>Report Issues on GitHub (<a
 href="http://github.com/nov/fb_graph/issues">github.com/nov/fb_graph/issues</a>)
 
@@ -96,24 +100,51 @@ href="http://developers.facebook.com/docs/reference/api">developers.facebook.com
 Almost all connections　for each object are also supported. (Private
 message connections are not supported yet)
 </p>
+<h3>Basic Objects</h3>
 <pre>
-  # Basic Objects
   user = FbGraph::User.fetch('matake')
   user.name    # =&gt; 'Nov Matake'
   user.picture # =&gt; 'https://graph.facebook.com/matake/picture'
+
+  # User.new doesn't fetch the user's profile info
+  me = User.new('me', :token =&gt; YOUR_ACCESS_TOKEN)
 
   page = FbGraph::Page.fetch('smartfmteam')
   page.name     # =&gt; 'smart.fm'
   page.picture  # =&gt; 'https://graph.facebook.com/smart.fm/picture'
 
   :
+</pre>
+<h3><a href="../classes/Connections.html">Connections</a></h3>
+<pre>
+  # Public connections
+  user = FbGraph::User.fetch('matake')
+  user.feed
+  user.posts
+  user.friends
+  user.tagged
+  :
 
-  # Connections
+  # Private connections requires &quot;token&quot;
+  FbGraph::User.new('matake').friends # =&gt; raise FbGraph::Unauthorized
+  user = FbGraph::User.fetch('matake', :token =&gt; ACCESS_TOKEN)
+  user.albums
+  user.events
+  user.friends
+  user.likes
+  :
+
+  # &quot;home&quot; connection is only available for &quot;me&quot;
+  me = User.new('me', :token =&gt; ACCESS_TOKEN)
+  me.home
+  :
+</pre>
+<h3>Pagination</h3>
+<pre>
+  user = FbGraph::User.new('matake', :token =&gt; ACCESS_TOKEN)
   likes = user.likes # =&gt; Array of FbGraph::Like
   likes.next         # =&gt; {:limit =&gt; 25, :until =&gt; '...'}
   likes.previous     # =&gt; {:limit =&gt; 25, :since =&gt; '...'}
-
-  # Pagination
   user.likes(likes.next)     # =&gt; Array of FbGraph::Like
   user.likes(likes.previous) # =&gt; Array of FbGraph::Like
 </pre>
