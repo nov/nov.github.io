@@ -88,7 +88,7 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000037">new</a>&nbsp;&nbsp;
+      <a href="#M000048">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -162,19 +162,19 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000037" class="method-detail">
-        <a name="M000037"></a>
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
 
         <div class="method-heading">
-          <a href="#M000037" class="method-signature">
+          <a href="#M000048" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(identifier, options = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000037-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000037-source">
+            onclick="toggleCode('M000048-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000048-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/fb_graph/group.rb, line 9</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">identifier</span>, <span class="ruby-identifier">options</span> = {})
@@ -185,11 +185,13 @@
       <span class="ruby-ivar">@name</span>         = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:name</span>]
       <span class="ruby-ivar">@description</span>  = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:description</span>]
       <span class="ruby-ivar">@link</span>         = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:link</span>]
+      <span class="ruby-ivar">@privacy</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:privacy</span>]
       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:venue</span>]
         <span class="ruby-ivar">@venue</span> = <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Venue</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:venue</span>])
       <span class="ruby-keyword kw">end</span>
-      <span class="ruby-ivar">@privacy</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:privacy</span>]
-      <span class="ruby-ivar">@updated_time</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:updated_time</span>]
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:updated_time</span>]
+        <span class="ruby-ivar">@updated_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:updated_time</span>]).<span class="ruby-identifier">utc</span>
+      <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>

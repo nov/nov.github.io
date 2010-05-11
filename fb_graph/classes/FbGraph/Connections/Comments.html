@@ -80,7 +80,9 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
+      <a href="#M000007">comment!</a>&nbsp;&nbsp;
       <a href="#M000006">comments</a>&nbsp;&nbsp;
+      <a href="#M000008">like!</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -102,6 +104,30 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="#M000007" class="method-signature">
+          <span class="method-name">comment!</span><span class="method-args">(options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000007-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fb_graph/connections/comments.rb, line 18</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">comment!</span>(<span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">comment</span> = <span class="ruby-identifier">post</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:connection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'comments'</span>))
+        <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">comment</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">comment</span>))
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
       <div id="method-M000006" class="method-detail">
         <a name="M000006"></a>
 
@@ -118,10 +144,45 @@
 <pre>
 <span class="ruby-comment cmt"># File lib/fb_graph/connections/comments.rb, line 4</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">comments</span>(<span class="ruby-identifier">options</span> = {})
-        <span class="ruby-identifier">comments</span> = <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Collection</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">get</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:connection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'comment'</span>)))
+        <span class="ruby-identifier">comments</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">blank?</span>
+          <span class="ruby-comment cmt"># Note:</span>
+          <span class="ruby-comment cmt"># &quot;comments&quot; is a connection, but included in fetched &quot;post&quot; object</span>
+          <span class="ruby-comment cmt"># this improves performance when rendering the stream with comments</span>
+          <span class="ruby-ivar">@_comments_</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Collection</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">get</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:connection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'comments'</span>)))
+        <span class="ruby-keyword kw">end</span>
         <span class="ruby-identifier">comments</span>.<span class="ruby-identifier">map!</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">comment</span><span class="ruby-operator">|</span>
           <span class="ruby-constant">Comment</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">comment</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">comment</span>)
         <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="#M000008" class="method-signature">
+          <span class="method-name">like!</span><span class="method-args">(options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+NOTE: the context of getting likes is <a href="../User.html">User</a>, but
+the context of posting like is not user. posting like is always in same
+context with <a href="Comments.html#M000007">comment!</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000008-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fb_graph/connections/comments.rb, line 26</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">like!</span>(<span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">post</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:connection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'likes'</span>))
       <span class="ruby-keyword kw">end</span>
 </pre>
           </div>

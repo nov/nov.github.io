@@ -88,8 +88,8 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000035">me</a>&nbsp;&nbsp;
-      <a href="#M000034">new</a>&nbsp;&nbsp;
+      <a href="#M000046">me</a>&nbsp;&nbsp;
+      <a href="#M000045">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -236,42 +236,42 @@ Connections::Updates
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000035" class="method-detail">
-        <a name="M000035"></a>
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
 
         <div class="method-heading">
-          <a href="#M000035" class="method-signature">
-          <span class="method-name">me</span><span class="method-args">(token)</span>
+          <a href="#M000046" class="method-signature">
+          <span class="method-name">me</span><span class="method-args">(access_token)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000035-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000035-source">
+            onclick="toggleCode('M000046-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000046-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fb_graph/user.rb, line 46</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">me</span>(<span class="ruby-identifier">token</span>)
-      <span class="ruby-identifier">new</span>(<span class="ruby-value str">'me'</span>, <span class="ruby-identifier">:token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">token</span>)
+<span class="ruby-comment cmt"># File lib/fb_graph/user.rb, line 60</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">me</span>(<span class="ruby-identifier">access_token</span>)
+      <span class="ruby-identifier">new</span>(<span class="ruby-value str">'me'</span>, <span class="ruby-identifier">:access_token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">access_token</span>)
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000034" class="method-detail">
-        <a name="M000034"></a>
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
 
         <div class="method-heading">
-          <a href="#M000034" class="method-signature">
+          <a href="#M000045" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(identifier, options = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000034-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000034-source">
+            onclick="toggleCode('M000045-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000045-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/fb_graph/user.rb, line 32</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">identifier</span>, <span class="ruby-identifier">options</span> = {})
@@ -281,11 +281,25 @@ Connections::Updates
       <span class="ruby-ivar">@first_name</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:first_name</span>]
       <span class="ruby-ivar">@link</span>       = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:link</span>]
       <span class="ruby-ivar">@about</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:about</span>]
-      <span class="ruby-ivar">@birthday</span>   = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:birthday</span>]
-      <span class="ruby-ivar">@work</span>       = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:work</span>]
-      <span class="ruby-ivar">@education</span>  = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:education</span>]
       <span class="ruby-ivar">@email</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:email</span>]
-      <span class="ruby-ivar">@website</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:website</span>]
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:birthday</span>]
+        <span class="ruby-identifier">month</span>, <span class="ruby-identifier">day</span>, <span class="ruby-identifier">year</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:birthday</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">'/'</span>).<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:to_i</span>)
+        <span class="ruby-identifier">year</span> <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>
+        <span class="ruby-ivar">@birthday</span> = <span class="ruby-constant">Date</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">year</span>, <span class="ruby-identifier">month</span>, <span class="ruby-identifier">day</span>)
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-ivar">@work</span> = []
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:work</span>]
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:work</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">work</span><span class="ruby-operator">|</span>
+          <span class="ruby-ivar">@work</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Work</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">work</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-ivar">@education</span> = []
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:education</span>]
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:education</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">education</span><span class="ruby-operator">|</span>
+          <span class="ruby-ivar">@education</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Education</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">education</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-ivar">@website</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:website</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>

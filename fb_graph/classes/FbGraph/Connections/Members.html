@@ -80,7 +80,7 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000013">members</a>&nbsp;&nbsp;
+      <a href="#M000018">members</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -102,29 +102,25 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000013" class="method-detail">
-        <a name="M000013"></a>
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
 
         <div class="method-heading">
-          <a href="#M000013" class="method-signature">
+          <a href="#M000018" class="method-signature">
           <span class="method-name">members</span><span class="method-args">(options = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000013-source">
+            onclick="toggleCode('M000018-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000018-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/fb_graph/connections/members.rb, line 4</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">members</span>(<span class="ruby-identifier">options</span> = {})
         <span class="ruby-identifier">members</span> = <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Collection</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">get</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:connection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'members'</span>)))
-        <span class="ruby-identifier">member</span>.<span class="ruby-identifier">map!</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">member</span><span class="ruby-operator">|</span>
-          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">member</span>[<span class="ruby-identifier">:category</span>]
-            <span class="ruby-constant">Page</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">member</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">member</span>)
-          <span class="ruby-keyword kw">else</span>
-            <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">member</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">member</span>)
-          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">members</span>.<span class="ruby-identifier">map!</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">member</span><span class="ruby-operator">|</span>
+          <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">member</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">member</span>)
         <span class="ruby-keyword kw">end</span>
       <span class="ruby-keyword kw">end</span>
 </pre>

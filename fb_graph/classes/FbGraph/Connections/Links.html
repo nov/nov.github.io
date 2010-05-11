@@ -80,7 +80,8 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000019">links</a>&nbsp;&nbsp;
+      <a href="#M000026">link!</a>&nbsp;&nbsp;
+      <a href="#M000025">links</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -102,19 +103,43 @@
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000019" class="method-detail">
-        <a name="M000019"></a>
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
 
         <div class="method-heading">
-          <a href="#M000019" class="method-signature">
+          <a href="#M000026" class="method-signature">
+          <span class="method-name">link!</span><span class="method-args">(options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000026-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000026-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fb_graph/connections/links.rb, line 11</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">link!</span>(<span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">link</span> = <span class="ruby-identifier">post</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:connection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'links'</span>))
+        <span class="ruby-constant">Link</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">link</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">link</span>))
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
+
+        <div class="method-heading">
+          <a href="#M000025" class="method-signature">
           <span class="method-name">links</span><span class="method-args">(options = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000019-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000019-source">
+            onclick="toggleCode('M000025-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000025-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/fb_graph/connections/links.rb, line 4</span>
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">links</span>(<span class="ruby-identifier">options</span> = {})

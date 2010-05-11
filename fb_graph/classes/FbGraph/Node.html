@@ -86,9 +86,13 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000040">fetch</a>&nbsp;&nbsp;
-      <a href="#M000041">get</a>&nbsp;&nbsp;
-      <a href="#M000039">new</a>&nbsp;&nbsp;
+      <a href="#M000056">delete</a>&nbsp;&nbsp;
+      <a href="#M000053">destroy</a>&nbsp;&nbsp;
+      <a href="#M000052">fetch</a>&nbsp;&nbsp;
+      <a href="#M000051">fetch</a>&nbsp;&nbsp;
+      <a href="#M000054">get</a>&nbsp;&nbsp;
+      <a href="#M000050">new</a>&nbsp;&nbsp;
+      <a href="#M000055">post</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -116,17 +120,17 @@
       <div class="name-list">
         <table>
         <tr class="top-aligned-row context-row">
+          <td class="context-item-name">access_token</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
           <td class="context-item-name">endpoint</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
           <td class="context-item-desc"></td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">identifier</td>
-          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
-        </tr>
-        <tr class="top-aligned-row context-row">
-          <td class="context-item-name">token</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
           <td class="context-item-desc"></td>
         </tr>
@@ -140,49 +144,99 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000040" class="method-detail">
-        <a name="M000040"></a>
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
 
         <div class="method-heading">
-          <a href="#M000040" class="method-signature">
+          <a href="#M000052" class="method-signature">
           <span class="method-name">fetch</span><span class="method-args">(identifier, options = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000040-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000040-source">
+            onclick="toggleCode('M000052-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000052-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fb_graph/node.rb, line 13</span>
+<span class="ruby-comment cmt"># File lib/fb_graph/node.rb, line 19</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">identifier</span>, <span class="ruby-identifier">options</span> = {})
-      <span class="ruby-identifier">_fetched_</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">identifier</span>).<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:get</span>, <span class="ruby-identifier">options</span>)
-      <span class="ruby-identifier">new</span>(<span class="ruby-identifier">_fetched_</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">_fetched_</span>)
+      <span class="ruby-identifier">new</span>(<span class="ruby-identifier">identifier</span>).<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">options</span>)
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
         </div>
       </div>
 
-      <div id="method-M000039" class="method-detail">
-        <a name="M000039"></a>
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
 
         <div class="method-heading">
-          <a href="#M000039" class="method-signature">
+          <a href="#M000050" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(identifier, options = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000039-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000039-source">
+            onclick="toggleCode('M000050-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000050-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/fb_graph/node.rb, line 7</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">identifier</span>, <span class="ruby-identifier">options</span> = {})
-      <span class="ruby-ivar">@identifier</span> = <span class="ruby-identifier">identifier</span>
-      <span class="ruby-ivar">@endpoint</span>   = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">ROOT_URL</span>, <span class="ruby-identifier">identifier</span>)
-      <span class="ruby-ivar">@token</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:token</span>]
+      <span class="ruby-ivar">@identifier</span>   = <span class="ruby-identifier">identifier</span>
+      <span class="ruby-ivar">@endpoint</span>     = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">ROOT_URL</span>, <span class="ruby-identifier">identifier</span>.<span class="ruby-identifier">to_s</span>)
+      <span class="ruby-ivar">@access_token</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:access_token</span>]
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="#M000053" class="method-signature">
+          <span class="method-name">destroy</span><span class="method-args">(options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000053-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000053-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fb_graph/node.rb, line 23</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>(<span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:access_token</span>] <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">access_token</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">access_token</span>
+      <span class="ruby-identifier">destory</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">identifier</span>, <span class="ruby-identifier">options</span>)
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="#M000051" class="method-signature">
+          <span class="method-name">fetch</span><span class="method-args">(options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000051-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000051-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fb_graph/node.rb, line 13</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:access_token</span>] <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">access_token</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">access_token</span>
+      <span class="ruby-identifier">_fetched_</span> = <span class="ruby-identifier">get</span>(<span class="ruby-identifier">options</span>)
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">_fetched_</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">_fetched_</span>)
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>
@@ -191,24 +245,78 @@
 
       <h3 class="section-bar">Protected Instance methods</h3>
 
-      <div id="method-M000041" class="method-detail">
-        <a name="M000041"></a>
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
 
         <div class="method-heading">
-          <a href="#M000041" class="method-signature">
-          <span class="method-name">get</span><span class="method-args">(options = {})</span>
+          <a href="#M000056" class="method-signature">
+          <span class="method-name">delete</span><span class="method-args">(params = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000041-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000041-source">
+            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000056-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/fb_graph/node.rb, line 20</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">options</span> = {})
-      <span class="ruby-identifier">_endpoint_</span> = <span class="ruby-identifier">build_endpoint</span>(<span class="ruby-identifier">options</span>)
-      <span class="ruby-identifier">handle_response</span> <span class="ruby-constant">RestClient</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">_endpoint_</span>)
+<span class="ruby-comment cmt"># File lib/fb_graph/node.rb, line 44</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">params</span> = {})
+      <span class="ruby-identifier">_endpoint_</span> = <span class="ruby-identifier">build_endpoint</span>(<span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:delete</span>))
+      <span class="ruby-identifier">handle_response</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-constant">RestClient</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">_endpoint_</span>, <span class="ruby-identifier">params</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="#M000054" class="method-signature">
+          <span class="method-name">get</span><span class="method-args">(params = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000054-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000054-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fb_graph/node.rb, line 30</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">params</span> = {})
+      <span class="ruby-identifier">_endpoint_</span> = <span class="ruby-identifier">build_endpoint</span>(<span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:get</span>))
+      <span class="ruby-identifier">handle_response</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-constant">RestClient</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">_endpoint_</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="#M000055" class="method-signature">
+          <span class="method-name">post</span><span class="method-args">(params = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000055-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000055-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fb_graph/node.rb, line 37</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>(<span class="ruby-identifier">params</span> = {})
+      <span class="ruby-identifier">_endpoint_</span> = <span class="ruby-identifier">build_endpoint</span>(<span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:post</span>))
+      <span class="ruby-identifier">handle_response</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-constant">RestClient</span>.<span class="ruby-identifier">post</span>(<span class="ruby-identifier">_endpoint_</span>, <span class="ruby-identifier">params</span>)
+      <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>

@@ -120,11 +120,7 @@
       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">noreply</span>(<span class="ruby-identifier">options</span> = {})
         <span class="ruby-identifier">members</span> = <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Collection</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">get</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:connection</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'noreply'</span>)))
         <span class="ruby-identifier">members</span>.<span class="ruby-identifier">map!</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">member</span><span class="ruby-operator">|</span>
-          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">member</span>[<span class="ruby-identifier">:category</span>]
-            <span class="ruby-constant">Page</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">member</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">member</span>)
-          <span class="ruby-keyword kw">else</span>
-            <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">member</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">member</span>)
-          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">member</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">member</span>)
         <span class="ruby-keyword kw">end</span>
       <span class="ruby-keyword kw">end</span>
 </pre>

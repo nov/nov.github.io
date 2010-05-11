@@ -82,6 +82,13 @@
 
    </div>
 
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000063">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
 
   </div>
 
@@ -94,10 +101,68 @@
 
 
 
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">code</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">message</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">type</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
       
 
 
     <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000063" class="method-detail">
+        <a name="M000063"></a>
+
+        <div class="method-heading">
+          <a href="#M000063" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(code, message, body = '')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000063-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000063-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/fb_graph.rb, line 11</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">code</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">body</span> = <span class="ruby-value str">''</span>)
+      <span class="ruby-ivar">@code</span> = <span class="ruby-identifier">code</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">blank?</span>
+        <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">response</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">body</span>).<span class="ruby-identifier">with_indifferent_access</span>
+        <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">response</span>[<span class="ruby-identifier">:error</span>][<span class="ruby-identifier">:message</span>]
+        <span class="ruby-ivar">@type</span> = <span class="ruby-identifier">response</span>[<span class="ruby-identifier">:error</span>][<span class="ruby-identifier">:type</span>]
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
 
 
   </div>

@@ -88,7 +88,7 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000036">new</a>&nbsp;&nbsp;
+      <a href="#M000047">new</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -200,53 +200,60 @@
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000036" class="method-detail">
-        <a name="M000036"></a>
+      <div id="method-M000047" class="method-detail">
+        <a name="M000047"></a>
 
         <div class="method-heading">
-          <a href="#M000036" class="method-signature">
+          <a href="#M000047" class="method-signature">
           <span class="method-name">new</span><span class="method-args">(identifier, options = {})</span>
           </a>
         </div>
       
         <div class="method-description">
           <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000036-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000036-source">
+            onclick="toggleCode('M000047-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000047-source">
 <pre>
 <span class="ruby-comment cmt"># File lib/fb_graph/post.rb, line 7</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">identifier</span>, <span class="ruby-identifier">options</span> = {})
       <span class="ruby-keyword kw">super</span>
       <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">from</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:from</span>])
         <span class="ruby-ivar">@from</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">from</span>[<span class="ruby-identifier">:category</span>]
-          <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Page</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">from</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">from</span>) 
+          <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Page</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">from</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">from</span>)
         <span class="ruby-keyword kw">else</span>
-          <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">from</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">from</span>) 
+          <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">from</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">from</span>)
         <span class="ruby-keyword kw">end</span>
       <span class="ruby-keyword kw">end</span>
       <span class="ruby-ivar">@to</span> = []
       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:to</span>]
         <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Collection</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:to</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">to</span><span class="ruby-operator">|</span>
           <span class="ruby-ivar">@to</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">to</span>[<span class="ruby-identifier">:category</span>]
-            <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Page</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">to</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">to</span>) 
+            <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Page</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">to</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">to</span>)
           <span class="ruby-keyword kw">else</span>
-            <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">to</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">to</span>) 
+            <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">to</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:id</span>), <span class="ruby-identifier">to</span>)
           <span class="ruby-keyword kw">end</span>
         <span class="ruby-keyword kw">end</span>
       <span class="ruby-keyword kw">end</span>
-      <span class="ruby-ivar">@message</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:message</span>]
-      <span class="ruby-ivar">@picture</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:picture</span>]
-      <span class="ruby-ivar">@link</span>         = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:link</span>]
-      <span class="ruby-ivar">@name</span>         = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:name</span>]
-      <span class="ruby-ivar">@caption</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:caption</span>]
-      <span class="ruby-ivar">@description</span>  = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:description</span>]
-      <span class="ruby-ivar">@source</span>       = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:source</span>]
-      <span class="ruby-ivar">@icon</span>         = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:icon</span>]
-      <span class="ruby-ivar">@attribution</span>  = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:attribution</span>]
-      <span class="ruby-ivar">@actions</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:actions</span>]
-      <span class="ruby-ivar">@likes</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:likes</span>]
-      <span class="ruby-ivar">@created_time</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:created_time</span>]
-      <span class="ruby-ivar">@updated_time</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:updated_time</span>]
+      <span class="ruby-ivar">@message</span>     = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:message</span>]
+      <span class="ruby-ivar">@picture</span>     = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:picture</span>]
+      <span class="ruby-ivar">@link</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:link</span>]
+      <span class="ruby-ivar">@name</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:name</span>]
+      <span class="ruby-ivar">@caption</span>     = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:caption</span>]
+      <span class="ruby-ivar">@description</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:description</span>]
+      <span class="ruby-ivar">@source</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:source</span>]
+      <span class="ruby-ivar">@icon</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:icon</span>]
+      <span class="ruby-ivar">@attribution</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:attribution</span>]
+      <span class="ruby-ivar">@actions</span>     = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:actions</span>]
+      <span class="ruby-ivar">@likes</span>       = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:likes</span>]
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:created_time</span>]
+        <span class="ruby-ivar">@created_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:created_time</span>]).<span class="ruby-identifier">utc</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:updated_time</span>]
+        <span class="ruby-ivar">@updated_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:updated_time</span>]).<span class="ruby-identifier">utc</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># cached connection</span>
+      <span class="ruby-ivar">@_comments_</span> = <span class="ruby-constant">FbGraph</span><span class="ruby-operator">::</span><span class="ruby-constant">Collection</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:comments</span>])
     <span class="ruby-keyword kw">end</span>
 </pre>
           </div>

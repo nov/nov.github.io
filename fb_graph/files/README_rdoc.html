@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Tue Apr 27 23:36:50 +0900 2010</td>
+      <td>Mon May 10 10:11:44 +0900 2010</td>
     </tr>
     </table>
   </div>
@@ -91,6 +91,10 @@ href="http://nov.github.com/fb_graph">nov.github.com/fb_graph</a>)
 href="http://github.com/nov/fb_graph/issues">github.com/nov/fb_graph/issues</a>)
 
 </li>
+<li>Facebook fan page (<a
+href="http://www.facebook.com/pages/FbGraph/117513961602338">www.facebook.com/pages/FbGraph/117513961602338</a>)
+
+</li>
 </ul>
 <h2>Examples</h2>
 <p>
@@ -100,14 +104,15 @@ href="http://developers.facebook.com/docs/reference/api">developers.facebook.com
 Almost all connections　for each object are also supported. (Private
 message connections are not supported yet)
 </p>
-<h3>Basic Objects</h3>
+<h3>GET</h3>
+<h4>Basic Objects</h4>
 <pre>
   user = FbGraph::User.fetch('matake')
   user.name    # =&gt; 'Nov Matake'
   user.picture # =&gt; 'https://graph.facebook.com/matake/picture'
 
   # User.new doesn't fetch the user's profile info
-  me = User.new('me', :token =&gt; YOUR_ACCESS_TOKEN)
+  me = User.new('me', :access_token =&gt; YOUR_ACCESS_TOKEN)
 
   page = FbGraph::Page.fetch('smartfmteam')
   page.name     # =&gt; 'smart.fm'
@@ -115,7 +120,7 @@ message connections are not supported yet)
 
   :
 </pre>
-<h3><a href="../classes/Connections.html">Connections</a></h3>
+<h4><a href="../classes/Connections.html">Connections</a></h4>
 <pre>
   # Public connections
   user = FbGraph::User.fetch('matake')
@@ -125,9 +130,9 @@ message connections are not supported yet)
   user.tagged
   :
 
-  # Private connections requires &quot;token&quot;
+  # Private connections requires &quot;access_token&quot;
   FbGraph::User.new('matake').friends # =&gt; raise FbGraph::Unauthorized
-  user = FbGraph::User.fetch('matake', :token =&gt; ACCESS_TOKEN)
+  user = FbGraph::User.fetch('matake', :access_token =&gt; ACCESS_TOKEN)
   user.albums
   user.events
   user.friends
@@ -135,18 +140,94 @@ message connections are not supported yet)
   :
 
   # &quot;home&quot; connection is only available for &quot;me&quot;
-  me = User.new('me', :token =&gt; ACCESS_TOKEN)
+  me = User.new('me', :access_token =&gt; ACCESS_TOKEN)
   me.home
   :
 </pre>
-<h3>Pagination</h3>
+<h4>Pagination</h4>
 <pre>
-  user = FbGraph::User.new('matake', :token =&gt; ACCESS_TOKEN)
+  user = FbGraph::User.new('matake', :access_token =&gt; ACCESS_TOKEN)
   likes = user.likes # =&gt; Array of FbGraph::Like
   likes.next         # =&gt; {:limit =&gt; 25, :until =&gt; '...'}
   likes.previous     # =&gt; {:limit =&gt; 25, :since =&gt; '...'}
   user.likes(likes.next)     # =&gt; Array of FbGraph::Like
   user.likes(likes.previous) # =&gt; Array of FbGraph::Like
+</pre>
+<h3>POST</h3>
+<h4>Update status (wall post)</h4>
+<pre>
+  me = FbGraph::User.me(ACCESS_TOKEN)
+  me.feed!(
+    :message =&gt; 'Updating via FbGraph',
+    :picture =&gt; 'https://graph.facebook.com/matake/picture',
+    :link =&gt; 'http://github.com/nov/fb_graph',
+    :name =&gt; 'FbGraph',
+    :description =&gt; 'A Ruby wrapper for Facebook Graph API'
+  )
+</pre>
+<h4>Post a like/comment to a post</h4>
+<pre>
+  post = FbGraph::Page.new(117513961602338).feed.first
+  bool = post.like!(
+    :access_token =&gt; ACCESS_TOKEN
+  )
+  comment = post.comment!(
+    :access_token =&gt; ACCESS_TOKEN,
+    :message =&gt; 'Hey, I\'m testing you!'
+  )
+</pre>
+<h4>Post a note</h4>
+<pre>
+  page = FbGraph::Page.new(117513961602338)
+  note = page.note!(
+    :access_token =&gt; ACCESS_TOKEN,
+    :subject =&gt; 'testing',
+    :message =&gt; 'Hey, I\'m testing you!'
+  )
+</pre>
+<h4>Post a link</h4>
+<pre>
+  me = FbGraph::User.me(ACCESS_TOKEN)
+  link = me.link!(
+    :link =&gt; 'http://github.com/nov/fb_graph',
+    :message =&gt; 'A Ruby wrapper for Facebook Graph API.'
+  )
+</pre>
+<h4>Create Event, respond to it</h4>
+<pre>
+  me = FbGraph::User.me(ACCESS_TOKEN)
+  event = me.event!(
+    :name =&gt; 'FbGraph test event',
+    :start_time =&gt; 1.week.from_now.to_i,
+    :end_time =&gt; 2.week.from_now.to_i
+  )
+  bool = event.attending!(
+    :access_token =&gt; ACCESS_TOKEN
+  )
+  bool = event.maybe!(
+    :access_token =&gt; ACCESS_TOKEN
+  )
+  bool = event.declined!(
+    :access_token =&gt; ACCESS_TOKEN
+  )
+</pre>
+<h4>Create an album</h4>
+<pre>
+  me = FbGraph::User.me(ACCESS_TOKEN)
+  album = me.album!(
+    :name =&gt; 'FbGraph test',
+    :message =&gt; 'test test test'
+  ) # =&gt; now facebook Graph API returns weird response for this call
+</pre>
+<h4>Upload a photo to an album</h4>
+<pre>
+  me = FbGraph::User.me(ACCESS_TOKEN)
+  album = me.albums.first
+  album.photo!(
+    :access_token =&gt; ACCESS_TOKEN,
+    :image =&gt; File.new('/Users/nov/Desktop/nov.gif', 'rb'), # 'rb' is needed only on windows
+    :message =&gt; 'Hello, where is photo?'
+  )
 </pre>
 <h2>Note on Patches/Pull Requests</h2>
 <ul>
