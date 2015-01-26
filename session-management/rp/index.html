@@ -18,6 +18,7 @@
     form.bind('submit', function () {
       var new_session_state = input.val();
       $.cookie('session-state', new_session_state, {expires: 7});
+      return false;
     });
 
     var session_changed = function () {
