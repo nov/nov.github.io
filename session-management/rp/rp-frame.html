@@ -28,11 +28,7 @@
     }
     window.addEventListener("message", from_op, false);
 
-    var loop = function () {
-      to_op();
-      setInterval(loop, 3000);
-    }
-    loop();
+    setInterval(to_op, 3000);
   </script>
 </body>
 </html>
