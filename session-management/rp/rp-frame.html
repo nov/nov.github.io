@@ -9,7 +9,7 @@
 <body>
   <script>
     var session_changed = false;
-    var op_origin = "http://matake.jp";
+    var op_origin = "https://nov.github.io";
 
     var to_op = function () {
       var session_state = $.cookie('session-state');
@@ -21,11 +21,20 @@
       if (e.origin !== op_origin) {
         return;
       }
+      console.info(e.data);
       if (e.data == "changed") {
         window.parent.session_changed();
       }
     }
     window.addEventListener("message", from_op, false);
+
+    var loop = function () {
+      to_op();
+      setInterval(function () {
+        loop, 3000
+      });
+    }
+    loop()
   </script>
 </body>
 </html>

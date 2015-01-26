@@ -2,13 +2,12 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Session Management Demo</title>
+  <title>RP - Session Management Demo</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://nov.github.io/js/jquery.cookie.js"></script>
 </head>
 <body>
-  <iframe id="rp-frame" src="rp-frame.html" style="display: none;"></iframe>
-  <iframe id="op-frame" src="https://nov.github.io/session-management/op-frame.html" style="display: none;"></iframe>
+  <h1>RP</h1>
   <form action="#" id="session-state">
     <input type="text" name="session-state" placeholder="OP Session State">
     <input type="submit" value="Set">
@@ -31,5 +30,7 @@
       );
     });
   </script>
+  <iframe id="rp-frame" src="rp-frame.html" style="display: none;"></iframe>
+  <iframe id="op-frame" src="https://nov.github.io/session-management/op-frame.html" style="display: none;"></iframe>
 </body>
 </html>
