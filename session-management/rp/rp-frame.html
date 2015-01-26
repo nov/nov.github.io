@@ -30,11 +30,9 @@
 
     var loop = function () {
       to_op();
-      setInterval(function () {
-        loop, 3000
-      });
+      setInterval(loop, 3000);
     }
-    loop()
+    loop();
   </script>
 </body>
 </html>

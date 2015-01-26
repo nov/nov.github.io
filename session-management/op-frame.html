@@ -9,12 +9,13 @@
 <body>
   <script>
     var to_rp = function (message, e) {
-      e.source.postMessage('unchanged', e.origin);
+      e.source.postMessage(message, e.origin);
     }
 
     var from_rp = function (e) {
       var received_state = e.data;
       var current_state = $.cookie('session-state');
+      console.log(received_state, current_state);
       if (received_state == current_state) {
         to_rp('unchanged', e);
       } else {
