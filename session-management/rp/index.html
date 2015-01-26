@@ -4,15 +4,32 @@
   <meta charset="utf-8">
   <title>Session Management Demo</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="../js/jquery.cookie.js"></script>
+  <script src="https://nov.github.io/js/jquery.cookie.js"></script>
 </head>
 <body>
   <iframe id="rp-frame" src="rp-frame.html" style="display: none;"></iframe>
   <iframe id="op-frame" src="https://nov.github.io/session-management/op-frame.html" style="display: none;"></iframe>
+  <form action="#" id="session-state">
+    <input type="text" name="session-state" placeholder="OP Session State">
+    <input type="submit" value="Set">
+  </form>
   <script>
+    var form = $('form#session-state');
+    var input = $('form#session-state input[name=session-state]');
+    form.bind('submit', function () {
+      var new_session_state = input.val();
+      $.cookie('session-state', new_session_state, {expires: 7});
+    });
+
     var session_changed = function () {
       alert('OP Session Changed');
     }
+
+    $(function () {
+      input.val(
+        $.cookie('session-state')
+      );
+    });
   </script>
 </body>
 </html>

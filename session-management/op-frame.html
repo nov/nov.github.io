@@ -8,17 +8,20 @@
 </head>
 <body>
   <script>
-    window.addEventListener("message", listen, false);
+    var to_rp = function (message, e) {
+      e.source.postMessage('unchanged', e.origin);
+    }
 
-    var listen = function (e) {
+    var from_rp = function (e) {
       var received_state = e.data;
       var current_state = $.cookie('session-state');
       if (received_state == current_state) {
-        e.source.postMessage('unchanged', e.origin);
+        to_rp('unchanged', e);
       } else {
-        e.source.postMessage('changed', e.origin);
+        to_rp('changed', e);
       }
     }
+    window.addEventListener("message", from_rp, false);
   </script>
 </body>
 </html>
